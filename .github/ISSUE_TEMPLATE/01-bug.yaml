@@ -1,5 +1,5 @@
 name: Bug Report
-description: File a bug report.
+description: File a bug report in Kipling method.
 title: "[Bug]: Name the bug concisely as possible"
 labels: ["bug"]
 body:
@@ -8,7 +8,7 @@ body:
     attributes:
       label: What happened?
       description: Tell us what you see.
-      placeholder: Describe the symptoms in chronological order.
+      placeholder: "Describe the symptoms in chronological order.\n Media you can provide (screenshots, videos) will be helpful."
     validations:
       required: true
   - type: input
@@ -17,6 +17,31 @@ body:
       label: Which version?
       description: The version you are running.
       placeholder: "Use `git -v` to show the version"
+    validations:
+      required: true
+  - type: checkboxes
+    id: build
+    attributes:
+      label: Build from source
+      options:
+        - label: yes
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where did you see the bug?
+      description: The environment you are running in.
+      options: 
+        - Linux
+        - MacOS
+        - Windows
+    validations:
+      required: true
+  - type: input
+    id: when
+    attributes:
+      label: When did you see the bug?
+      description: The time you saw the bug.
+      placeholder: "e.g. 2024-01-30 15:04 UTC"
     validations:
       required: true
   - type: textarea
