@@ -34,8 +34,8 @@ body:
     attributes:
       label: Build from source
       options:
-        - no
-        - yes
+        - "no"
+        - "yes"
       default: 0
   - type: input
     id: where
