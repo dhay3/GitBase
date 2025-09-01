@@ -11,6 +11,8 @@ body:
       options:
         - label: "I have searched the issues and discussions"
         - label: "I have read the documentation"
+    validations:
+      required: true
   - type: textarea
     id: what
     attributes:
