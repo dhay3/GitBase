@@ -1,8 +1,18 @@
 name: Bug Report
-description: File a bug report in Kipling method.
-title: "[Bug]: Name the bug concisely as possible"
-labels: ["bug"]
+description: Found something you weren't expecting?  Report it here!
+labels: ["Unconfirmed Bug"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report.
+        NOTE: Please read the instructions below before filling the form.
+  - type: markdown
+    attributes:
+      value: |
+        1. Please write in English, this is the language all maintainers can speak and write.
+        2. Please only use this form to submit bugs and **not** feature requests or questions.
+        3. Please take a moment to check that your issue hasn't already been reported.
   - type: checkboxes
     id: before-ask
     attributes:
@@ -18,7 +28,9 @@ body:
     attributes:
       label: What happened?
       description: Tell us what you see.
-      placeholder: "Describe the symptoms in chronological order.\n Media you can provide (screenshots, videos) will be helpful."
+      placeholder: |
+        Describe the symptoms in chronological order.
+        Media you can provide (screenshots, videos) will be helpful.
     validations:
       required: true
   - type: input
