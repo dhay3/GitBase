@@ -3,6 +3,14 @@ description: File a bug report in Kipling method.
 title: "[Bug]: Name the bug concisely as possible"
 labels: ["bug"]
 body:
+  - type: checkboxes
+    id: before-ask
+    attributes:
+      label: Before you ask
+      description: Check these boxes before you asking.
+      options:
+        - label: I have searched the issues and discussions 
+        - label: I have read the documentation
   - type: textarea
     id: what
     attributes:
@@ -14,34 +22,25 @@ body:
   - type: input
     id: who
     attributes:
-      label: Which version?
+      label: Which git version?
       description: The version you are running.
       placeholder: "Use `git -v` to show the version"
     validations:
       required: true
-  - type: checkboxes
+  - type: dropdown
     id: build
     attributes:
       label: Build from source
       options:
-        - label: yes
-  - type: dropdown
+        - no
+        - yes
+      default: 0
+  - type: input
     id: where
     attributes:
       label: Where did you see the bug?
       description: The environment you are running in.
-      options: 
-        - Linux
-        - MacOS
-        - Windows
-    validations:
-      required: true
-  - type: input
-    id: when
-    attributes:
-      label: When did you see the bug?
-      description: The time you saw the bug.
-      placeholder: "e.g. 2024-01-30 15:04 UTC"
+      placeholder: "In Linux or MacOS: `uname -r`\nIn Windows: `ver`"
     validations:
       required: true
   - type: textarea
