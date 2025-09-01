@@ -9,8 +9,8 @@ body:
       label: Before you ask
       description: Check these boxes before you asking.
       options:
-        - label: I have searched the issues and discussions 
-        - label: I have read the documentation
+        - label: "I have searched the issues and discussions"
+        - label: "I have read the documentation"
   - type: textarea
     id: what
     attributes:
