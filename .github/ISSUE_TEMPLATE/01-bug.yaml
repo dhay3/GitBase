@@ -1,21 +1,29 @@
 name: Bug Report
 description: File a bug report.
-title: "[Bug]: "
+title: "[Bug]: Name the bug concisely as possible"
 labels: ["bug"]
 body:
   - type: textarea
     id: what
     attributes:
       label: What happened?
-      description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
+      description: Tell us what you see.
+      placeholder: Describe the symptoms in chronological order.
     validations:
       required: true
   - type: input
     id: who
     attributes:
       label: Which version?
-      description: Which version are you running?
+      description: The version you are running.
       placeholder: "Use `git -v` to show the version"
+    validations:
+      required: true
+  - type: textarea
+    id: how
+    attributes:
+      label: How to reproduce
+      description: Describe the steps to reproduce the bug.
+      placeholder: "1. Step one\n2. Step two\n3. Step three"
     validations:
       required: true
