@@ -52,7 +52,6 @@ jobs:
           else
             echo "citation_message=${{ inputs.citation-message }}" >> "${GITHUB_OUTPUT}"
           fi
-          echo "${GITHUB_OUTPUT}"
   create-citation:
     runs-on: ubuntu-latest
     permissions:
