@@ -46,5 +46,14 @@ jobs:
             - given-names: ${{ github.repository_owner }}
               orcid: '${{ inputs.citation-orcid }}'
           repository-code: '${{ github.server_url }}/${{ github.repository }}'
-          license: CC-BY-4.0
+          license: $(gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/${{ github.repository }}/license | jq '.license.spdx_id')
           EOF
+          cat CITATION.cff
+      # - name: commit and push
+      #   run: |
+      #     git config user.name 'github-actions[bot]'
+      #     git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      #     git pull
+      #     git commit -am "🤖 add citation.cff"
+      #     git push
+
