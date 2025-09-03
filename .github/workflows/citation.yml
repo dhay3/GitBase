@@ -28,17 +28,40 @@ on:
         default: "https://orcid.org/0009-0000-6176-6323"
         required: false
         type: string
+env:
+  GH_TOKEN: ${{ github.token }}
+  GH_OWNER: ${{ github.repository_owner }}
+  GH_REPO: ${{ github.server_url }}/${{ github.repository }}
 jobs:
-  citation:
+  evars:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      gh_license: ${{ steps.license.outputs.gh_license }}
+      citation_message: ${{ steps.message.outputs.citation_message }}
+    steps:
+      - id: gh_license
+        name: Get repository license
+        run: |
+          echo "gh_license=$(gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/${{ github.repository }}/license | jq '.license.spdx_id')" >> "${GITHUB_OUTPUT}"
+      - id: citation_message
+        name: Citation message
+        run: |
+          if [[ -z "${{ inputs.citation-message }}" ]]; then
+            echo "citation_message=If you use this ${{ inputs.citation-type }}, please cite it using the metadata from this file." >> "${GITHUB_ENV}"
+          else
+            echo "citation_message=${{ inputs.citation-message }}" >> "${GITHUB_ENV}"
+          fi
+  create-citation:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     timeout-minutes: 30
+    needs:
+      - evars
     env:
-      GH_TOKEN: ${{ github.token }}
-      GH_OWNER: ${{ github.repository_owner }}
-      GH_REPO: ${{ github.server_url }}/${{ github.repository }}
-      GH_LICENSE: $(gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/${{ github.repository }}/license | jq '.license.spdx_id')
+      GH_LICENSE: ${{ needs.evars.outputs.gh_license }}
+      MESSAGE: ${{ needs.evars.outputs.citation_message }}
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -57,7 +80,7 @@ jobs:
           cff-version: ${{ env.CFF_VERSION }}
           title: ${{ env.TITLE }}
           message: >-
-            If you use this ${{ env.TYPE }}, please cite it using the metadata from this file.
+            ${{ env.MESSAGE }}
           type: ${{ env.TYPE }}
           authors:
             - given-names: ${{ env.GH_OWNER }}
