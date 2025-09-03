@@ -48,9 +48,9 @@ jobs:
         name: Citation message
         run: |
           if [[ -z "${{ inputs.citation-message }}" ]]; then
-            echo "citation_message=If you use this ${{ inputs.citation-type }}, please cite it using the metadata from this file." >> "${GITHUB_ENV}"
+            echo "citation_message=If you use this ${{ inputs.citation-type }}, please cite it using the metadata from this file." >> "${GITHUB_OUTPUT}"
           else
-            echo "citation_message=${{ inputs.citation-message }}" >> "${GITHUB_ENV}"
+            echo "citation_message=${{ inputs.citation-message }}" >> "${GITHUB_OUTPUT}"
           fi
   create-citation:
     runs-on: ubuntu-latest
