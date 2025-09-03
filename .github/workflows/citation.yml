@@ -1,6 +1,6 @@
 name: citation
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       cff-version:
         description: 'CFF version'
