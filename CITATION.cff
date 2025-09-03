@@ -5,7 +5,7 @@ cff-version: 1.2.0
 title: git-base
 message: >-
   
-type: dataset
+type: software
 authors:
   - given-names: dhay3
     orcid: 'https://orcid.org/0009-0000-6176-6323'
