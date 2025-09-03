@@ -1,0 +1,9 @@
+- [ ] ✨ feat
+- [ ] 🐛 fix
+- [ ] ♻️ refactor
+- [ ] 💄 style
+- [ ] 👷 build
+- [ ] ⚡️ perf
+- [ ] ✅ test
+- [ ] 📝 docs
+- [ ] 🔨 chore
