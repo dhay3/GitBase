@@ -68,7 +68,7 @@ jobs:
           TITLE: ${{ inputs.citation-title }}
           MESSAGE: ${{ needs.evars.outputs.citation_message }}
           TYPE: ${{ inputs.citation-type }}
-          ORCID: ${{ inputs.citation-orcid }}
+          ORCID: ${{ inputs.author-orcid }}
           GH_LICENSE: ${{ needs.evars.outputs.gh_license }}
         run: |
           cat > CITATION.cff << EOF
