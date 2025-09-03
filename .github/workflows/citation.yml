@@ -1,14 +1,14 @@
-name: citation
+name: Citation
 on:
   workflow_dispatch:
     inputs:
       cff-version:
-        description: 'CFF version'
+        description: "CFF version"
         default: 1.2.0
         required: false
         type: string
       citation-title:
-        description: 'citation title'
+        description: "citation title"
         required: true
         type: string
       citation-type:
@@ -17,8 +17,8 @@ on:
         required: true
         type: string
       citation-orcid:
-        description: 'citation ORCID'
-        default: 'https://orcid.org/0009-0000-6176-6323'
+        description: "citation ORCID"
+        default: "https://orcid.org/0009-0000-6176-6323"
         required: false
         type: string
 jobs:
@@ -27,6 +27,8 @@ jobs:
     permissions:
       contents: write
     timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - name: checkout
         uses: actions/checkout@v5
@@ -56,4 +58,3 @@ jobs:
       #     git pull
       #     git commit -am "🤖 add citation.cff"
       #     git push
-
