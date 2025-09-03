@@ -23,7 +23,7 @@ on:
         description: "citation message"
         required: false
         type: string
-      citation-orcid:
+      author-orcid:
         description: "citation ORCID"
         default: "https://orcid.org/0009-0000-6176-6323"
         required: false
