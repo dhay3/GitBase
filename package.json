@@ -1,16 +1,9 @@
 {
-  "name": "github-git-base",
-  "version": "1.0.0",
-  "description": "Template for Github repository",
-  "homepage": "https://github.com/dhay3/GitBase#readme",
-  "bugs": {
-    "url": "https://github.com/dhay3/GitBase/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dhay3/GitBase.git"
-  },
+  "private": true,
   "scripts": {
     "prepare": "husky"
+  },
+  "dependencies": {
+    "husky": ">=9.1.7"
   }
 }
