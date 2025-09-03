@@ -59,9 +59,6 @@ jobs:
     timeout-minutes: 30
     needs:
       - evars
-    env:
-      GH_LICENSE: ${{ needs.evars.outputs.gh_license }}
-      MESSAGE: ${{ needs.evars.outputs.citation_message }}
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -69,9 +66,10 @@ jobs:
         env:
           CFF_VERSION: ${{ inputs.cff-version }}
           TITLE: ${{ inputs.citation-title }}
-          MESSAGE: ${{ inputs.citation-message }}
+          MESSAGE: ${{ needs.evars.outputs.citation_message }}
           TYPE: ${{ inputs.citation-type }}
           ORCID: ${{ inputs.citation-orcid }}
+          GH_LICENSE: ${{ needs.evars.outputs.gh_license }}
         run: |
           cat > CITATION.cff << EOF
           # This CITATION.cff file was generated with cffinit.
