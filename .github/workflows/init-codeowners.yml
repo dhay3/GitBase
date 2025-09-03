@@ -21,6 +21,7 @@ jobs:
             echo "*       @${{ github.repository_owner }}" > CODEOWNERS
           else
             for owner in ${{ inputs.repository-owners }}; do
+              echo > CODEOWNERS
               echo "*       @${owner}" >> CODEOWNERS
             done
           fi
