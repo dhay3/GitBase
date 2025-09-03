@@ -35,7 +35,7 @@ env:
 jobs:
   evars:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     outputs:
       gh_license: ${{ steps.license.outputs.gh_license }}
       citation_message: ${{ steps.message.outputs.citation_message }}
@@ -52,6 +52,7 @@ jobs:
           else
             echo "citation_message=${{ inputs.citation-message }}" >> "${GITHUB_OUTPUT}"
           fi
+          echo "${GITHUB_OUTPUT}"
   create-citation:
     runs-on: ubuntu-latest
     permissions:
