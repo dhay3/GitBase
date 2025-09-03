@@ -12,9 +12,16 @@ on:
         required: true
         type: string
       citation-type:
-        description: 'citation type "software" or "dataset"'
+        description: "citation type"
         default: software
         required: true
+        type: choice
+        options:
+          - software
+          - dataset
+      citation-message:
+        description: "citation message"
+        required: false
         type: string
       citation-orcid:
         description: "citation ORCID"
@@ -29,26 +36,34 @@ jobs:
     timeout-minutes: 30
     env:
       GH_TOKEN: ${{ github.token }}
+      GH_OWNER: ${{ github.repository_owner }}
+      GH_REPO: ${{ github.server_url }}/${{ github.repository }}
+      GH_LICENSE: $(gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/${{ github.repository }}/license | jq '.license.spdx_id')
     steps:
       - name: Checkout
         uses: actions/checkout@v5
-      - name: Create
+      - name: Create CITATION.cff
+        env:
+          CFF_VERSION: ${{ inputs.cff-version }}
+          TITLE: ${{ inputs.citation-title }}
+          MESSAGE: ${{ inputs.citation-message }}
+          TYPE: ${{ inputs.citation-type }}
+          ORCID: ${{ inputs.citation-orcid }}
         run: |
           cat > CITATION.cff << EOF
           # This CITATION.cff file was generated with cffinit.
           # Visit https://bit.ly/cffinit to generate yours today!
 
-          cff-version: ${{ inputs.cff-version }}
-          title: ${{ inputs.citation-title }}
+          cff-version: ${{ env.CFF_VERSION }}
+          title: ${{ env.TITLE }}
           message: >-
-            If you use this ${{ inputs.citation-type }}, please cite it using the metadata
-            from this file.
-          type: ${{ inputs.citation-type }}
+            If you use this ${{ env.TYPE }}, please cite it using the metadata from this file.
+          type: ${{ env.TYPE }}
           authors:
-            - given-names: ${{ github.repository_owner }}
-              orcid: '${{ inputs.citation-orcid }}'
-          repository-code: '${{ github.server_url }}/${{ github.repository }}'
-          license: $(gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/${{ github.repository }}/license | jq '.license.spdx_id')
+            - given-names: ${{ env.GH_OWNER }}
+              orcid: '${{ env.ORCID }}'
+          repository-code: '${{ env.GH_REPO }}'
+          license: ${{ env.GH_LICENSE }}
           EOF
           cat CITATION.cff
       - name: Commit and push
