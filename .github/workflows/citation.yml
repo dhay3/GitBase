@@ -37,20 +37,20 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     outputs:
-      gh_license: ${{ steps.license.outputs.gh_license }}
-      citation_message: ${{ steps.message.outputs.citation_message }}
+      gh_license: ${{ steps.gh_license.outputs.gh_license }}
+      citation_message: ${{ steps.citation_message.outputs.citation_message }}
     steps:
       - id: gh_license
         name: Get repository license
         run: |
-          echo "gh_license=$(gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/${{ github.repository }}/license | jq '.license.spdx_id')" >> $GITHUB_OUTPUT
+          echo "gh_license=$(gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/${{ github.repository }}/license | jq '.license.spdx_id')" >> "${GITHUB_OUTPUT}"
       - id: citation_message
         name: Citation message
         run: |
           if [[ -z "${{ inputs.citation-message }}" ]]; then
-            echo "citation_message=If you use this ${{ inputs.citation-type }}, please cite it using the metadata from this file." >> $GITHUB_OUTPUT
+            echo "citation_message=If you use this ${{ inputs.citation-type }}, please cite it using the metadata from this file." >> "${GITHUB_OUTPUT}"
           else
-            echo "citation_message=${{ inputs.citation-message }}" >> $GITHUB_OUTPUT
+            echo "citation_message=${{ inputs.citation-message }}" >> "${GITHUB_OUTPUT}"
           fi
           echo "${GITHUB_OUTPUT}"
   create-citation:
