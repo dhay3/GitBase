@@ -1,0 +1,50 @@
+name: citation
+on:
+  workflow_call:
+    inputs:
+      cff-version:
+        description: 'CFF version'
+        default: 1.2.0
+        required: false
+        type: string
+      citation-title:
+        description: 'citation title'
+        required: true
+        type: string
+      citation-type:
+        description: 'citation type "software" or "dataset"'
+        default: software
+        required: true
+        type: string
+      citation-orcid:
+        description: 'citation ORCID'
+        default: 'https://orcid.org/0009-0000-6176-6323'
+        required: false
+        type: string
+jobs:
+  citation:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 30
+    steps:
+      - names: checkout
+        uses: actions/checkout@v5
+      - names: create
+        run: |
+          cat > CITATION.cff << EOF
+  # This CITATION.cff file was generated with cffinit.
+  # Visit https://bit.ly/cffinit to generate yours today!
+
+  cff-version: ${{ inputs.cff-version }}
+  title: ${{ inputs.citation-title }}
+  message: >-
+    If you use this ${{ inputs.citation-type }}, please cite it using the metadata
+    from this file.
+  type: ${{ inputs.citation-type }}
+  authors:
+    - given-names: ${{ github.repository.owner }}
+      orcid: '${{ inputs.citation-orcid }}'
+  repository-code: '${{ github.server.url }}/${{ github.repository }}'
+  license: CC-BY-4.0
+        EOF
