@@ -43,8 +43,8 @@ jobs:
             from this file.
           type: ${{ inputs.citation-type }}
           authors:
-            - given-names: ${{ github.repository.owner }}
+            - given-names: ${{ github.repository_owner }}
               orcid: '${{ inputs.citation-orcid }}'
-          repository-code: '${{ github.server.url }}/${{ github.repository }}'
+          repository-code: '${{ github.server_url }}/${{ github.repository }}'
           license: CC-BY-4.0
           EOF
