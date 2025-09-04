@@ -4,6 +4,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "husky": ">=9.1.7"
+    "husky": ">=9.1.7",
+    "gitmoji-cli": ">=9.7.0"
   }
 }
