@@ -27,7 +27,7 @@ updates:
   - package-ecosystem: "docker"
     directories:
       - "/"
-      - ".github/"
+      - ".github/*"
     schedule:
       interval: "weekly"
     commit-message:
