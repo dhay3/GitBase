@@ -30,8 +30,6 @@ updates:
       - ".github/"
     schedule:
       interval: "weekly"
-    cooldown:
-      default-days: 7
     commit-message:
       prefix: "🤖(chore)"
 
@@ -39,7 +37,5 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    cooldown:
-      default-days: 3
     commit-message:
       prefix: "🤖(chore)"
