@@ -30,6 +30,12 @@ updates:
       - ".github/*"
     schedule:
       interval: "weekly"
+    ignore:
+      - dependency-name: "catthehacker/ubuntu"
+        versions:
+          - "22.04"
+          - "20.04"
+          - "18.04"
     commit-message:
       prefix: "🤖(chore)"
 
