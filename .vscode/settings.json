@@ -4,4 +4,6 @@
   "editor.autoIndent": "full",
   "editor.autoIndentOnPaste": true,
   "editor.wordWrap": "on",
+  "workbench.sideBar.location": "right",
+  "extensions.ignoreRecommendations": true
 }
