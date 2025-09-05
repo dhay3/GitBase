@@ -1,0 +1,9 @@
+/.devcontainer/
+/.git/
+/.github/
+/.husky/
+/.vscode/
+
+.editorconfig
+.gitignore
+*.md
